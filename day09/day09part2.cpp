@@ -124,7 +124,7 @@ static void fillBasinPoints(
     int checkRow = mp.row - 1;
     int checkCol = mp.col;
     if ( checkRow >= 0 && checkRow < numRows &&
-         map[checkRow][checkCol] == mp.val + 1 &&
+         map[checkRow][checkCol] > mp.val &&
          map[checkRow][checkCol] != 9 )
     {
       MapPoint newPoint( checkRow, checkCol, map[checkRow][checkCol] );
@@ -147,7 +147,7 @@ static void fillBasinPoints(
     checkRow = mp.row + 1;
     checkCol = mp.col;
     if ( checkRow >= 0 && checkRow < numRows &&
-         map[checkRow][checkCol] == mp.val + 1 &&
+         map[checkRow][checkCol] > mp.val &&
          map[checkRow][checkCol] != 9 )
     {
       MapPoint newPoint( checkRow, checkCol, map[checkRow][checkCol] );
@@ -170,7 +170,7 @@ static void fillBasinPoints(
     checkRow = mp.row;
     checkCol = mp.col - 1;
     if ( checkCol >= 0 && checkCol < numCols &&
-         map[checkRow][checkCol] == mp.val + 1 &&
+         map[checkRow][checkCol] > mp.val &&
          map[checkRow][checkCol] != 9 )
     {
       MapPoint newPoint( checkRow, checkCol, map[checkRow][checkCol] );
@@ -193,7 +193,7 @@ static void fillBasinPoints(
     checkRow = mp.row;
     checkCol = mp.col + 1;
     if ( checkCol >= 0 && checkCol < numCols &&
-         map[checkRow][checkCol] == mp.val + 1 &&
+         map[checkRow][checkCol] > mp.val &&
          map[checkRow][checkCol] != 9 )
     {
       MapPoint newPoint( checkRow, checkCol, map[checkRow][checkCol] );
@@ -379,7 +379,6 @@ int main()
   );
   assert( basins.size() >= 3 );
   uint64_t sizesProduct = basins[0].size() * basins[1].size() * basins[2].size();
-  // 252000 is too low
   std::cout << "sizes product: " << sizesProduct << std::endl;
   return 0;
 }
